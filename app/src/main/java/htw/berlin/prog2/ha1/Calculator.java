@@ -82,6 +82,8 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //fix round Numbers display with .0
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
 
     }
 
@@ -144,5 +146,7 @@ public class Calculator {
 
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //fix round E number contain .0
+        if(screen.contains("E") && screen.contains(".0")) screen = screen.toLowerCase().replace(".0e", "e+");
     }
 }
